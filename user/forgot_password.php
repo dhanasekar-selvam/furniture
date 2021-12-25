@@ -77,56 +77,52 @@ include("./header/header.php");
     }
 
     ?>
-    <!-- tap on top starts-->
-    <div class="tap-top"><i data-feather="chevrons-up"></i></div>
-    <!-- tap on tap ends-->
-    <!-- page-wrapper Start-->
-    <div class="page-wrapper">
-        <div class="container-fluid p-0">
-            <div class="row">
-                <div class="col-12">
-                    <div class="login-card">
-                        <div>
-                            <div><a class="logo" href="index.html"><img class="img-fluid for-light" src="../assets/images/logo/login.png" alt="looginpage"><img class="img-fluid for-dark" src="../assets/images/logo/logo_dark.png" alt="looginpage"></a></div>
-                            <div class="login-main">
-                                <h4>Reset Your Password</h4>
-                                <form method="POST" action="">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-5"><img class="bg-img-cover bg-center" src="../assets/images/customimg/furniture1.jpeg" alt="looginpage"></div>
+            <div class="col-xl-7 p-0">
+                <div class="login-card">
+                    <div>
+                        <div><a class="logo" href="index.html"><img class="img-fluid for-light" src="../assets/images/customimg/furniture_logo_default.png" alt="looginpage"><img class="img-fluid for-dark" src="../assets/images/logo/logo_dark.png" alt="looginpage"></a></div>
+                        <div class="login-main">
+                            <h4>Reset Your Password</h4>
+                            <form method="POST" action="">
 
-                                    <div class="form-group">
-                                        <label class="col-form-label">Enter Your Email</label>
-                                        <div class="row">
+                                <div class="form-group">
+                                    <label class="col-form-label">Enter Your Email</label>
+                                    <div class="row">
 
-                                            <div class="col-8 col-sm-9">
-                                                <input class="form-control mb-1" type="email" name="email" value="<?php echo $_SESSION ? $_SESSION['email'] : '' ?> " required>
-                                            </div>
-                                            <div class="col-4 col-sm-3">
-                                                <button class="btn btn-primary btn-block  " type="submit" name="send">Send</button>
-                                            </div>
-
+                                        <div class="col-8 col-sm-9">
+                                            <input class="form-control mb-1" type="email" name="email" value="<?php echo $_SESSION ? $_SESSION['email'] : '' ?> " required>
                                         </div>
-                                    </div>
-                                    <div class="mt-4 mb-4"><span class="reset-password-link">If don't receive OTP?  <button class="btn btn-danger" type="submit" name="send">Resend</button></span></div>
-
-                                </form>
-                                <form class=" theme-form" method="POST" action="">
-
-                                    <div class="form-group">
-                                        <label class="col-form-label pt-0">Enter OTP</label>
-                                        <div class="col">
-                                            <input class="form-control text-center " type="text" name="otp" maxlength="4">
+                                        <div class="col-4 col-sm-3">
+                                            <button class="btn btn-primary btn-block  " type="submit" name="send">Send</button>
                                         </div>
 
                                     </div>
+                                </div>
+                                <div class="mt-4 mb-4"><span class="reset-password-link">If don't receive OTP?  <button class="btn btn-danger" type="submit" name="send">Resend</button></span></div>
 
-                                    <button class="btn btn-primary btn-block w-100" type="submit" name="done">Verify </button>
-                            </div>
-                            <p class="mt-4 mb-0 text-center">Already have an password?<a class="ms-2" href="login.php">Sign in</a></p>
                             </form>
+                            <form class=" theme-form" method="POST" action="">
+
+                                <div class="form-group">
+                                    <label class="col-form-label pt-0">Enter OTP</label>
+                                    <div class="col">
+                                        <input class="form-control text-center " type="text" name="otp" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" maxlength="4">
+                                    </div>
+
+                                </div>
+
+                                <button class="btn btn-primary btn-block w-100" type="submit" name="done">Verify </button>
                         </div>
+                        <p class="mt-4 mb-0 text-center">Already have an password?<a class="ms-2" href="login.php">Sign in</a></p>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
     <?php
     include("./header/script.php");
