@@ -7,13 +7,13 @@ include("../db/db.php");
 <body>
     <?php
     if (isset($_POST['reset-password'])) {
-        if ($_POST['login']['password'] == '' || $_POST['cpassword'] == '') {
+        if ($_POST['password'] == '' || $_POST['cpassword'] == '') {
             echo '<script>
                 toastr.error("Please enter your password", "Error");
                 </script>';
         } else {
-            if ($_POST['login']['password'] == $_POST['cpassword']) {
-                $sql = "UPDATE users SET password='" . $_POST['login']['password'] . "' WHERE email='" . $_SESSION['email'] . "'";
+            if ($_POST['password'] == $_POST['cpassword']) {
+                $sql = "UPDATE users SET password='" . $_POST['password'] . "' WHERE email='" . $_SESSION['email'] . "'";
                 $result = mysqli_query($con, $sql);
                 if ($result) {
                     echo '<script>
@@ -44,47 +44,80 @@ include("../db/db.php");
 
 
     ?>
+    <!-- loader Start -->
+    <!-- <div id="loading">
+        <div id="loading-center">
+        </div>
+    </div> -->
+    <!-- loader END -->
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-xl-5"><img class="bg-img-cover bg-center" src="../assets/images/customimg/furniture1.jpeg" alt="looginpage"></div>
-            <div class="col-xl-7 p-0">
-                <div class="login-card">
-                    <div>
-                        <div><a class="logo" href="index.html"><img class="img-fluid for-light" src="../assets/images/customimg/furniture_logo_default.png" alt="looginpage"><img class="img-fluid for-dark" src="../assets/images/logo/logo_dark.png" alt="looginpage"></a></div>
-                        <div class="login-main">
-                            <form class="theme-form" method="post" action="">
-                                <h4>Reset Your Password</h4>
+    <div class="wrapper">
+        <section class="login-content">
+            <div class="container h-100">
+                <div class="row align-items-center justify-content-center h-100">
+                    <div class="col-12">
+                        <center><img src="../assets/customimg/furniture_logo_default-.png" alt=""></center>
 
-                                <h6 class="mt-4">Create Your Password</h6>
-                                <div class="form-group">
-                                    <label class="col-form-label">New Password</label>
-                                    <div class="form-input position-relative">
-                                        <input class="form-control" type="password" name="login[password]" required="" placeholder="*********" value="<?php echo $_SERVER['REQUEST_METHOD'] === 'POST' ?  $_POST['login']['password'] : '' ?>">
-                                        <div class="show-hide"><span class="show"></span></div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-form-label">Retype Password</label>
-                                    <input class="form-control" type="password" name="cpassword" required="" placeholder="*********" value="<?php echo $_SERVER['REQUEST_METHOD'] === 'POST' ?  $_POST['cpassword'] : '' ?>">
+                        <div class="row align-items-center">
+                            <div class="col-lg-6">
+                                <h2 class="mb-2">New Password</h2>
+                                <form method="POST" action="">
+                                    <div class="row">
 
-                                </div>
-                                <div class="form-group mb-0">
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <label class="mb-0">Password</label>
+                                                <input class="form-control" type="password" name="password" value="" id="password">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <label class="mb-0">Confirm Password</label>
+                                                <input class="form-control" type="password" name="cpassword" value="" id="password1">
+                                            </div>
+                                        </div>
 
-                                    <button class="btn btn-primary btn-block w-100" type="submit" name="reset-password">Reset Password </button>
-                                </div>
-                                <p class="mt-4 mb-0 text-center">Already have an password?<a class="ms-2" href="login.php">Sign in</a></p>
-                            </form>
+
+                                        <!-- An element to toggle between password visibility -->
+                                        <div class="col-lg-6">
+                                            <input type="checkbox" onclick="myFunction()"> Show Password
+
+                                        </div>
+
+                                    </div><br>
+                                    <button type="submit" class="btn btn-warning btn-lg" name="reset-password">Reset Password</button>
+                                    <p class="mt-3">
+                                        Remember Password <a href="auth-sign-up.html" class="text-primary">Sign In</a>
+                                    </p>
+                                </form>
+                            </div>
+                            <div class="col-lg-6 mb-lg-0 mb-4 mt-lg-0 mt-4">
+                                <img src="../assets/customimg/furnniture.jpg" class="img-fluid w-80" alt="">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     </div>
-    </div>
+
     <?php
-    include('./header/script.php');
+    include("./header/script.php");
     ?>
+    <script>
+        function myFunction() {
+            var x = document.getElementById("password");
+            var y = document.getElementById("password1");
+
+            if (x.type === "password" && y.type === "password") {
+                x.type = "text";
+                y.type = "text";
+            } else {
+                x.type = "password";
+                y.type = "password";
+            }
+        }
+    </script>
 </body>
 
 </html>

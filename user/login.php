@@ -7,31 +7,37 @@ include("../db/db.php");
     <?php
     if (isset($_POST['login-submit'])) {
         $email = $_POST['email'];
-        $password = $_POST['login']['password'];
+        $password = $_POST['password'];
         $sql = "SELECT * FROM users WHERE email='$email'";
         $result = mysqli_query($con, $sql);
         $row = mysqli_fetch_array($result);
 
 
-        if ($row['email'] == $email && $row['password'] == $password) {
+        if ($row['email'] == $email) {
+            if ($row['password'] != $password) {
+                echo '<script>
+            toastr.error("Invalid Password");
+            </script>';
+            } else {
 
-            $_SESSION['email'] = $email;
+                $_SESSION['email'] = $email;
 
-            echo '<script>
+                echo '<script>
             toastr.success("Login successfully");
             </script>';
-            if ($row['usrtype'] == 'admin') {
-                header("Location: admin/index.php");
-            } else if ($row['usrtype'] == 'user') {
-                header("Location: user/index.php");
-            }
+                if ($row['usrtype'] == 'admin') {
+                    header("Location: admin/index.php");
+                } else if ($row['usrtype'] == 'user') {
+                    header("Location: user/index.php");
+                }
     ?>
-            <script>
-                setTimeout(function() {
-                    window.location.href = 'index.php';
-                }, 2000);
-            </script>
+                <script>
+                    setTimeout(function() {
+                        window.location.href = 'index.php';
+                    }, 2000);
+                </script>
     <?php
+            }
         } else {
             echo '<script>
             toastr.error("Invalid Credentials");
@@ -40,50 +46,78 @@ include("../db/db.php");
     }
 
     ?>
-    <!-- login page start-->
-    <!-- login page start-->
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-xl-5"><img class="bg-img-cover bg-center" src="../assets/images/customimg/furniture1.jpeg" alt="looginpage"></div>
-            <div class="col-xl-7 p-0">
-                <div class="login-card">
-                    <div>
-                        <div><a class="logo text-start" href="index.html"><img class="img-fluid for-light" src="../assets/images/customimg/furniture_logo_default.png" alt="looginpage"><img class="img-fluid for-dark" src="../assets/images/logo/logo_dark.png" alt="looginpage"></a></div>
-                        <div class="login-main">
-                            <form class="theme-form">
-                                <h4>Sign in to account</h4>
-                                <p>Enter your email & password to login</p>
-                                <div class="form-group">
-                                    <label class="col-form-label">Email Address</label>
-                                    <input class="form-control" type="email" required="" placeholder="Email">
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-form-label">Password</label>
-                                    <div class="form-input position-relative">
-                                        <input class="form-control" type="password" name="login[password]" required="" placeholder="*********">
-                                        <div class="show-hide"><span class="show"> </span></div>
-                                    </div>
+    <!-- loader Start -->
+    <!-- <div id="loading">
+        <div id="loading-center">
+        </div>
+    </div> -->
+    <!-- loader END -->
 
-                                </div>
-                                <div class="form-group mb-0">
-                                    <div class="checkbox p-0">
-                                        <input id="checkbox1" type="checkbox">
-                                    </div><a class="link" href="forgot_password.php">Forgot password?</a>
-                                    <div class="text-end mt-4">
-                                        <button class="btn btn-primary btn-block w-100" type="submit" name="login-submit">Sign in</button>
-                                    </div>
-                                </div>
+    <div class="wrapper">
+        <section class="login-content">
+            <div class="container h-100">
+                <div class="row align-items-center justify-content-center h-100">
+                    <div class="col-12">
+                        <center><img src="../assets/customimg/furniture_logo_default-.png" alt=""></center>
 
-                                <p class="mt-4 mb-0 text-center">Don't have account?<a class="ms-2" href="signup.php">Create Account</a></p>
-                            </form>
+                        <div class="row align-items-center">
+                            <div class="col-lg-6">
+                                <h2 class="mb-2">Sign In</h2>
+                                <p>To Keep connected with us please login with your personal info.</p>
+                                <form method="POST" action="">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <label class="mb-0">Email</label>
+                                                <input class="form-control" type="email" name="email" placeholder=" ">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <label class="mb-0">Password</label>
+                                                <input class="form-control" type="password" name="password" value="" id="myInput">
+                                            </div>
+                                        </div>
+
+
+                                        <!-- An element to toggle between password visibility -->
+                                        <div class="col-lg-6">
+                                            <input type="checkbox" onclick="myFunction()"> Show Password
+
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <a href="forgot.php" style="color:red" class="float-right ">Forgot Password?</a>
+                                        </div>
+                                    </div><br>
+                                    <button type="submit" class="btn btn-warning btn-lg" name="login-submit">Sign In</button>
+                                    <p class="mt-3">
+                                        Create an Account <a href="signup.php" class="text-primary">Sign Up</a>
+                                    </p>
+                                </form>
+                            </div>
+                            <div class="col-lg-6 mb-lg-0 mb-4 mt-lg-0 mt-4">
+                                <img src="../assets/customimg/furnniture.jpg" class="img-fluid w-80" alt="">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <?php
-            include("./header/script.php");
-            ?>
-        </div>
+        </section>
+    </div>
+
+    <?php
+    include("./header/script.php");
+    ?>
+    <script>
+        function myFunction() {
+            var x = document.getElementById("myInput");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+    </script>
 </body>
 
 </html>

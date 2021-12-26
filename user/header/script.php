@@ -1,18 +1,34 @@
-<script src='../assets/js/jquery-3.5.1.min.js'></script>
-<!-- Bootstrap js-->
-<script src="../assets/js/bootstrap/bootstrap.bundle.min.js"></script>
-<!-- feather icon js-->
-<script src="../assets/js/icons/feather-icon/feather.min.js"></script>
-<script src="../assets/js/icons/feather-icon/feather-icon.js"></script>
-<!-- scrollbar js-->
-<script src="../assets/js/scrollbar/simplebar.js"></script>
-<script src="../assets/js/scrollbar/custom.js"></script>
-<!-- Sidebar jquery-->
-<script src="../assets/js/config.js"></script>
-<!-- Plugins JS start-->
-<script src="../assets/js/sidebar-menu.js"></script>
-<!-- Plugins JS Ends-->
-<!-- Theme js-->
-<script src="../assets/js/script.js"></script>
-<!-- login js-->
-<!-- Plugin used-->
+<!-- Backend Bundle JavaScript -->
+<script src="../assets/js/backend-bundle.min.js"></script>
+
+<!-- Flextree Javascript-->
+
+<!-- Table Treeview JavaScript -->
+<script src="../assets/js/table-treeview.js"></script>
+
+<!-- Masonary Gallery Javascript -->
+
+<!-- Mapbox Javascript -->
+
+<!-- Fullcalender Javascript -->
+<script src='../assets/vendor/fullcalendar/core/main.js'></script>
+<script src='../assets/vendor/fullcalendar/daygrid/main.js'></script>
+<script src='../assets/vendor/fullcalendar/timegrid/main.js'></script>
+<script src='../assets/vendor/fullcalendar/list/main.js'></script>
+
+<!-- SweetAlert JavaScript -->
+<script src="../assets/js/sweetalert.js"></script>
+
+<!-- Vectoe Map JavaScript -->
+<script src="../assets/js/vector-map-custom.js"></script>
+
+<!-- Chart Custom JavaScript -->
+
+<!-- Chart Custom JavaScript -->
+<script src="../assets/js/chart-custom.js"></script>
+
+<!-- slider JavaScript -->
+<script src="../assets/js/slider.js"></script>
+
+<!-- app JavaScript -->
+<script src="../assets/js/app.js"></script>
